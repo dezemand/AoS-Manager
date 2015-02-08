@@ -1,3 +1,5 @@
 servers/*
+!servers/README.txt
 logs/*
+!logs/README.txt
 node_modules
