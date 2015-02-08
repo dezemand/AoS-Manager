@@ -5,7 +5,7 @@ var io = require('socket.io')(http);
 var fs = require("fs");
 var aoslib = require("./aoslib");
 var servers = []; 
-getServerIDs(function (servids) {servers = servids});
+aoslib.getServerIDs(function (servids) {servers = servids});
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/web/list.html');
@@ -29,15 +29,15 @@ io.on('connection', function (socket) {
     var done = 0;
     for(i=0; i<servers.length; i++) {
       ids[servers[i]] = {identifier: "", server: "", gamemode: "", map: "", maxplayers: 0, players: 0, name: "", port: 0};
-      getID(servers[i], function (serv, id) {
+      aoslib.getServerIdentifier(servers[i], function (serv, id) {
         ids[serv].identifier = id;
         ids[serv].server = serv;
-        getConfig(serv, function (serv, conf) {
+        aoslib.getServerConfig(serv, function (serv, conf) {
           ids[serv].gamemode = conf.game_mode;
           ids[serv].maxplayers = conf.max_players;
           ids[serv].name = conf.name;
           ids[serv].port = conf.port;
-          getStatus(serv, conf.status_server.port, function(serv, map, players) {
+          aoslib.getAdvancedServerStatus(serv, conf.status_server.port, function(serv, map, players) {
             ids[serv].map = map;
             ids[serv].players = players;
             done++;
