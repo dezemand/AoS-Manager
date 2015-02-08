@@ -2,16 +2,18 @@ var app = require('express')();
 var httplib = require('http');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-//var io = {on: function() {}};
 var fs = require("fs");
-var servers = ["serv1"];
+var servers = []; 
+getServerIDs(function (servids) {servers = servids});
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/web/list.html');
 });
+
 app.get('/favicon.ico', function(req, res){
   res.sendFile(__dirname + '/web/favicon.ico');
 });
+
 app.get('/style.css', function(req, res){
   res.sendFile(__dirname + '/web/style.css');
 });
@@ -79,5 +81,16 @@ function getStatus(serv, port, callback) {
       var players = body.split("Current players: ")[body.split("Current players: ").length-1].split("/")[0];
       callback(serv, map, players);
     });
+  });
+}
+
+function getServerIDs(callback) {
+  var servers = [];
+  fs.readdir("./servers/", function(err, files) {
+    for(i=0; i<files.length;i++) {
+      if(fs.statSync("./servers/"+files[i]).isDirectory())
+        servers.push(files[i]);
+    }
+    callback(servers);
   });
 }
