@@ -28,7 +28,7 @@ io.on('connection', function (socket) {
     var ids = {};
     var done = 0;
     for(i=0; i<servers.length; i++) {
-      ids[servers[i]] = {identifier: "", server: "", gamemode: "", map: "", maxplayers: 0, players: 0, name: "", port: 0};
+      ids[servers[i]] = {identifier: "", server: "", gamemode: "", map: "", maxplayers: 0, players: 0, name: "", port: 0, status: "offline"};
       aoslib.getServerIdentifier(servers[i], function (serv, id) {
         ids[serv].identifier = id;
         ids[serv].server = serv;
@@ -48,5 +48,8 @@ io.on('connection', function (socket) {
         });
       });
     }
+  });
+  socket.on('updateserverlist', function () {
+    aoslib.getServerIDs(function (servids) {servers = servids});
   });
 });
