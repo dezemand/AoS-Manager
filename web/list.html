@@ -58,6 +58,7 @@
     <script>
       var socket = io();
       socket.emit("getlist");
+      socket.emit("updateserverlist");
       var refreshInterval = setInterval(function() {socket.emit("getlist");}, 2000);
       var updateInterval = setInterval(function() {socket.emit("updateserverlist");}, 20000);
       socket.on('list', function (list) {
