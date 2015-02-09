@@ -4,7 +4,6 @@
     <title>Ace of Spades Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="http://bootswatch.com/sandstone/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
@@ -12,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   </head>
-  <body style="background: url(http://www.buildandshoot.com/styles/Neutral/theme/images/bg.png);">
+  <body>
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -26,26 +25,26 @@
       </div>
     </nav>
 
-    <div class="container" style="margin-top: -20px; background: #fff; padding-bottom: 45px;box-shadow: rgb(81, 81, 81) 4px 4px 20px;">
+    <div class="container main">
       <div class="row">
         <div class="col-md-8">
           <h3>Servers</h3>
           <table id="servertable" class="table table-condensed table-striped">
             <thead>
               <tr>
-                <th style="width: 60px;">ID</th>
-                <th style="width: 75px;">Players</th>
-                <th>Name</th>
-                <th style="width: 150px;">Map</th>
-                <th style="width: 80px;">Gamemode</th>
-                <th style="width: 75px; text-align: right;"></th>
+                <th class="serv-id">ID</th>
+                <th class="serv-slots">Players</th>
+                <th class="serv-name">Name</th>
+                <th class="serv-map">Map</th>
+                <th class="serv-gm">Gamemode</th>
+                <th class="serv-join"></th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
         </div>
         <div class="col-md-4">
-          <div style='text-align: center; margin-top: 35px;'>
+          <div class="sidebar">
             <h4>Download Ace of Spades:</h4>
             <a href='http://launcher.buildandshoot.com/download'><img src='http://buildandshoot.com/images/download_bns_launcher_300x90.png'></a>
             <a href='https://github.com/yvt/openspades/releases/latest'><img src='http://buildandshoot.com/images/openspades_logo_300x116.png'></a>
@@ -53,7 +52,7 @@
         </div>
       </div>
     </div>
-    <table id="hiddenservertable" style="display: none;"></table>
+    <table id="hiddenservertable"></table>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();

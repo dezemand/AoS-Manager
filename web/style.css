@@ -1,3 +1,46 @@
+body {
+  background: url(http://www.buildandshoot.com/styles/Neutral/theme/images/bg.png);
+}
+
+div.main {
+  margin-top: -20px;
+  background: #fff;
+  padding-bottom: 45px;
+  box-shadow: rgb(81, 81, 81) 4px 4px 20px;
+}
+
+div.sidebar {
+  text-align: center;
+  margin-top: 35px;
+}
+
+th.serv-id {
+  width: 60px;
+}
+th.serv-slots {
+  width: 75px;
+  text-align: center;
+}
+th.serv-name {
+
+}
+th.serv-map {
+  width: 150px;
+}
+th.serv-gm {
+  width: 80px;
+  text-align: center;
+}
+th.serv-join {
+  width: 75px; 
+  text-align: center;
+}
+
 #servertable tbody td {
   vertical-align: middle;
 }
+
+#hiddenservertable {
+  display: none;
+}
+
