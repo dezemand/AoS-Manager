@@ -1,5 +1,24 @@
 {
-  "name": "AceOfSpades",
+  "name": "AoS-Manager",
+  "version": "0.1",
+  "description": "A simple manager for your servers. Requires PySnip's requirements and most likely a Linux box.",
+  "keywords": ["ace of spades", "manager", "server", "pysnip", "pyspades", "game", "game server"],
+  "homepage": "http://github.com/netraameht/AoS-Manager/",
+  "bugs": {
+    "url" : "http://github.com/netraameht/AoS-Manager/issues",
+    "email" : "maarten@v-ittersum.nl"
+  },
+  "license": "MIT",
+  "author": {
+    "name" : "Johnny Gat",
+    "email" : "maarten@v-ittersum.nl",
+    "url" : "http://mand.me/"
+  },
+  "repository": {
+    "type": "git", 
+    "url": "http://github.com/netraameht/AoS-Manager.git"
+  },
+  "os": ["linux"],
   "dependencies": {
     "express": "^4.11.2",
     "socket.io": "^1.3.3"
