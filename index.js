@@ -19,6 +19,10 @@ app.get('/style.css', function(req, res){
   res.sendFile(__dirname + '/web/style.css');
 });
 
+app.get('/list.js', function(req, res){
+  res.sendFile(__dirname + '/web/list.js');
+});
+
 http.listen(80, function(){
   console.log('listening on *:80');
 });
