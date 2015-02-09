@@ -65,12 +65,20 @@
         $("#hiddenservertable").html("");
         for (var key in list) {
           if (list.hasOwnProperty(key)) {
+            // Messy code below:
             console.log("Found server: " + key);
             var obj = list[key];
-            var map = "<td>"+obj.map[0]+"<br><span style='font-size:10px;'>By "+obj.map[1]+"</span></td>";
             var identifier = "aos://"+obj.identifier+":"+obj.port;
-            var join = "<td style='text-align: center;'><a class='btn btn-default btn-xs' href='"+identifier+"'>Join</a></td>"
-            $("#hiddenservertable").append("<tr><td>"+obj.server+"</td><td>"+obj.players+" / "+obj.maxplayers+"</td><td>"+obj.name+"</td>"+map+"<td>"+obj.gamemode+"</td>"+join+"</tr>");
+            var join = "<td></td>";
+            var trclass = "";
+            var map = "<td></td>";
+            if(obj.status == "online") {
+              join = "<td style='text-align: center;'><a class='btn btn-default btn-xs' href='"+identifier+"'>Join</a></td>"
+              map = "<td>"+obj.map[0]+"<br><span style='font-size:10px;'>By "+obj.map[1]+"</span></td>";
+            }
+            else
+              trclass = "danger";
+            $("#hiddenservertable").append("<tr class='"+trclass+"'><td>"+obj.server+"</td><td>"+obj.players+" / "+obj.maxplayers+"</td><td>"+obj.name+"</td>"+map+"<td style='text-align:center;'><span class=\"label label-default\">"+obj.gamemode+"<span></td>"+join+"</tr>");
           }
         }
         $("#servertable tbody").html($("#hiddenservertable tbody").html());

@@ -37,9 +37,10 @@ io.on('connection', function (socket) {
           ids[serv].maxplayers = conf.max_players;
           ids[serv].name = conf.name;
           ids[serv].port = conf.port;
-          aoslib.getAdvancedServerStatus(serv, conf.status_server.port, function(serv, map, players) {
+          aoslib.getAdvancedServerStatus(serv, conf.status_server.port, function(serv, online, map, players) {
             ids[serv].map = map;
             ids[serv].players = players;
+            if(online) ids[serv].status = "online";
             done++;
             if(done == servers.length) {
               socket.emit('list', ids);

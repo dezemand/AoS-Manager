@@ -25,14 +25,18 @@ var obj = {
   },
 
   getAdvancedServerStatus: function(serv, port, callback) {
+    var error = false;
     httplib.get({host:'localhost',port:port,path:'/'}, function (res) {
       var body = '';
       res.on('data', function(d) {body += d;});
       res.on('end', function() {
         var map = body.split("The server is currently running ")[body.split("The server is currently running ").length-1].split(".</p>")[0].split(" by ");
         var players = body.split("Current players: ")[body.split("Current players: ").length-1].split("/")[0];
-        callback(serv, map, players);
+        if(!error) callback(serv, true, map, players);
       });
+    }).on("error", function(e) {
+      error = true;
+      callback(serv, false, "", 0);
     });
   },
 
