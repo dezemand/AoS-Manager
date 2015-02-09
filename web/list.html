@@ -33,7 +33,7 @@
             <thead>
               <tr>
                 <th class="serv-id">ID</th>
-                <th class="serv-slots">Players</th>
+                <th class="serv-slots">Slots</th>
                 <th class="serv-name">Name</th>
                 <th class="serv-map">Map</th>
                 <th class="serv-gm">Gamemode</th>
@@ -64,19 +64,31 @@
         $("#hiddenservertable").html("");
         for (var key in list) {
           if (list.hasOwnProperty(key)) {
-            // Messy code below:
             var obj = list[key];
-            var identifier = "aos://"+obj.identifier+":"+obj.port;
-            var join = "<td></td>";
-            var trclass = "";
-            var map = "<td></td>";
+            var row = "<tr class='%1'>%2</tr>";
+            var cols = {
+              id: "<td class='serv-id'>%1</td>",
+              slots: "<td class='serv-slots'>%1/%2</td>",
+              name: "<td class='serv-name'>%1</td>",
+              map: "<td class='serv-map'>%1<br><span>By %2</span></td>",
+              gm: "<td class='serv-gm'>%1</td>",
+              join: "<td class='serv-join'><a class='btn btn-default btn-xs' %1 href='aos://%2:%3'>Join</a></td>"
+            };
+            cols.id = cols.id.replace("%1", obj.server);
+            cols.name = cols.name.replace("%1", obj.name);
+            cols.gm = cols.gm.replace("%1", obj.gamemode);
+            cols.slots = cols.slots.replace("%1", obj.players).replace("%2", obj.maxplayers);
             if(obj.status == "online") {
-              join = "<td style='text-align: center;'><a class='btn btn-default btn-xs' href='"+identifier+"'>Join</a></td>"
-              map = "<td>"+obj.map[0]+"<br><span style='font-size:10px;'>By "+obj.map[1]+"</span></td>";
+              cols.join = cols.join.replace("%1", "").replace("%2", obj.identifier).replace("%3", obj.port);
+              cols.map = cols.map.replace("%1", obj.map[0]).replace("%2", obj.map[1]);
+              row = row.replace("%1", "");
+            } else {
+              cols.map = cols.map.replace("%1", "").replace("%2", "");
+              cols.join = cols.join.replace("%1", "disabled").replace("%2", "").replace("%3", "");
+              row = row.replace("%1", "danger");
             }
-            else
-              trclass = "danger";
-            $("#hiddenservertable").append("<tr class='"+trclass+"'><td>"+obj.server+"</td><td>"+obj.players+" / "+obj.maxplayers+"</td><td>"+obj.name+"</td>"+map+"<td style='text-align:center;'><span class=\"label label-default\">"+obj.gamemode+"<span></td>"+join+"</tr>");
+            row = row.replace("%2", cols.id + cols.slots + cols.name + cols.map + cols.gm + cols.join);
+            $("#hiddenservertable").append(row);
           }
         }
         $("#servertable tbody").html($("#hiddenservertable tbody").html());

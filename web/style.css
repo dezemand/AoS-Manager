@@ -17,22 +17,47 @@ div.sidebar {
 th.serv-id {
   width: 60px;
 }
+td.serv-id {
+
+}
+
 th.serv-slots {
   width: 75px;
   text-align: center;
 }
+td.serv-slots {
+  text-align: center;
+}
+
 th.serv-name {
 
 }
+td.serv-name {
+
+}
+
 th.serv-map {
   width: 150px;
 }
+td.serv-map {
+
+}
+td.serv-map span {
+  font-size: 10px;
+}
+
 th.serv-gm {
   width: 80px;
   text-align: center;
 }
+td.serv-gm {
+  text-align: center;
+}
+
 th.serv-join {
   width: 75px; 
+}
+td.serv-join {
   text-align: center;
 }
 
