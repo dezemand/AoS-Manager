@@ -32,7 +32,19 @@ io.on('connection', function (socket) {
       aoslib.getServerIdentifier(servers[i], function (serv, id) {
         ids[serv].identifier = id;
         ids[serv].server = serv;
-        aoslib.getServerConfig(serv, function (serv, conf) {
+        aoslib.getServerConfig(serv, function (serv, exists, conf) {
+          if(!exists) {
+            ids[serv].gamemode = "Error";
+            ids[serv].maxplayers = 0;
+            ids[serv].name = "Error: config not found";
+            ids[serv].port = 0;
+            ids[serv].map = [];
+            ids[serv].players = 0;
+            done++;
+            if(done == servers.length)
+              socket.emit('list', ids);
+            return;
+          }
           ids[serv].gamemode = conf.game_mode;
           ids[serv].maxplayers = conf.max_players;
           ids[serv].name = conf.name;
@@ -42,9 +54,8 @@ io.on('connection', function (socket) {
             ids[serv].players = players;
             if(online) ids[serv].status = "online";
             done++;
-            if(done == servers.length) {
+            if(done == servers.length)
               socket.emit('list', ids);
-            }
           });
         });
       });

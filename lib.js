@@ -19,8 +19,9 @@ var obj = {
 
   getServerConfig: function(serv, callback) {
     fs.readFile("./servers/"+serv+"/feature_server/config.txt", "utf8", function(err, config) {
+      if(err) {callback(serv, false, {}); return;}
       config = JSON.parse(config);
-      callback(serv, config);
+      callback(serv, true, config);
     });
   },
 
