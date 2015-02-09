@@ -62,12 +62,10 @@
       var refreshInterval = setInterval(function() {socket.emit("getlist");}, 2000);
       var updateInterval = setInterval(function() {socket.emit("updateserverlist");}, 20000);
       socket.on('list', function (list) {
-        console.log("Refresh");
         $("#hiddenservertable").html("");
         for (var key in list) {
           if (list.hasOwnProperty(key)) {
             // Messy code below:
-            console.log("Found server: " + key);
             var obj = list[key];
             var identifier = "aos://"+obj.identifier+":"+obj.port;
             var join = "<td></td>";
