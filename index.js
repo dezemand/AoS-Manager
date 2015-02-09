@@ -34,6 +34,7 @@ io.on('connection', function (socket) {
         ids[serv].server = serv;
         aoslib.getServerConfig(serv, function (serv, exists, conf) {
           if(!exists) {
+            aoslib.getServerIDs(function (servids) {servers = servids});
             ids[serv].gamemode = "Error";
             ids[serv].maxplayers = 0;
             ids[serv].name = "Error: config not found";
