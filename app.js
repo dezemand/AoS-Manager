@@ -1,8 +1,11 @@
 var express = require('express');
+var favicon = require('serve-favicon');
 
 var app = express(); // Main stub
 var list = express(); // Server list stub
 var manager = express(); // Manager stub
+
+app.use(favicon(__dirname + '/web/main/favicon.ico'));
 
 list.get('/', function(req, res) {
   res.sendFile(__dirname + '/web/list/list.html');
