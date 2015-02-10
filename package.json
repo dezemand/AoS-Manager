@@ -11,6 +11,9 @@
     "game",
     "game server"
   ],
+  "scripts": { 
+    "start": "node index"
+  },
   "homepage": "http://github.com/netraameht/AoS-Manager/",
   "bugs": {
     "url": "http://github.com/netraameht/AoS-Manager/issues",
