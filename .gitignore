@@ -3,3 +3,4 @@ servers/*
 logs/*
 !logs/README.txt
 node_modules
+npm-debug.log
