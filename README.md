@@ -4,6 +4,13 @@ Ace of Spades (0.7.5 &amp; 0.7.6) Server Manager is made for server admins that 
 ## How to
 
 1. Clone this repo ``git clone https://github.com/netraameht/AoS-Manager.git``
-2. Make sure you have installed [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.org/) on your machine - ``npm --version``
+2. Make sure you have installed [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.org/) on your machine (``npm --version``)
 3. Run ``npm install`` inside your repo to install all dependencies
-4. Run ``npm start`` to start the app on port 80 (temp)
+4. Run ``npm start`` to start the app on port 80 (temporary port)
+
+## To do
+
+ - [ ] Start working on auto downloading & building PySnip
+ - [ ] Create interface for manager
+ - [ ] Fancy up main interface
+ - [ ] Cool authorization system for manager
